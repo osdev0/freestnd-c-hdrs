@@ -1,0 +1,7 @@
+prefix=@prefix@
+includedir=${prefix}/share/freestnd-c-hdrs/@architecture@/include
+
+Name: freestnd-c-hdrs-@architecture@
+Description: Freestanding GCC C headers for @architecture@
+Version: undefined
+Cflags: -I${includedir}
