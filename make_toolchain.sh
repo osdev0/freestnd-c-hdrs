@@ -76,6 +76,7 @@ cd binutils-$BINUTILSVERSION
 for patch in "${srcdir}"/toolchain-patches/binutils/*; do
     [ "${patch}" = "${srcdir}/toolchain-patches/binutils/*" ] && break
     patch -p1 < "${patch}"
+    find . -name '*.orig' -delete
 done
 cd ..
 mkdir build-binutils
@@ -90,6 +91,7 @@ cd gcc-$GCCVERSION
 for patch in "${srcdir}"/toolchain-patches/gcc/*; do
     [ "${patch}" = "${srcdir}/toolchain-patches/gcc/*" ] && break
     patch -p1 < "${patch}"
+    find . -name '*.orig' -delete
 done
 sed 's|http://gcc.gnu|https://gcc.gnu|g' < contrib/download_prerequisites > dp.sed
 mv dp.sed contrib/download_prerequisites
