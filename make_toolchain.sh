@@ -15,11 +15,11 @@ if [ -z "$TARGET" ]; then
 fi
 
 if [ -z "$BINUTILSVERSION" ]; then
-    BINUTILSVERSION=2.44
+    BINUTILSVERSION=2.45
 fi
 
 if [ -z "$GCCVERSION" ]; then
-    GCCVERSION=14.2.0
+    GCCVERSION=14.3.0
 fi
 
 if command -v gmake; then
