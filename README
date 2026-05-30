@@ -1,6 +1,6 @@
-Freestanding C Headers
-======================
+Freestanding C Headers (GNU)
+============================
 
 Headers from GCC that can be used in a freestanding environment.
 
-Relevant licenses apply.
+Relevant licenses apply; see COPYING3, and COPYING.RUNTIME.
