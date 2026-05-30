@@ -1,5 +1,5 @@
-/* RISC-V 'XTheadVector' Extension intrinsics include file.
-   Copyright (C) 2024-2026 Free Software Foundation, Inc.
+/* SiFive Vector Extension intrinsics include file.
+   Copyright (C) 2025-2026 Free Software Foundation, Inc.
 
    This file is part of GCC.
 
@@ -22,28 +22,11 @@
    see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
    <http://www.gnu.org/licenses/>.  */
 
-#ifndef __RISCV_TH_VECTOR_H
-#define __RISCV_TH_VECTOR_H
+#ifndef __SIFIVE_VECTOR_H
+#define __SIFIVE_VECTOR_H
 
-#include <stdint.h>
-#include <stddef.h>
+/* TODO: This should have a separate pragma to include only the SiFive
+         vector intrinsics. For now, we are including riscv_vector.h. */
+#include <riscv_vector.h>
 
-#ifndef __riscv_xtheadvector
-#error "XTheadVector intrinsics require the xtheadvector extension."
-#else
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-/* NOTE: This implementation of riscv_th_vector.h is intentionally short.  It does
-   not define the RVV types and intrinsic functions directly in C and C++
-   code, but instead uses the following pragma to tell GCC to insert the
-   necessary type and function definitions itself.  The net effect is the
-   same, and the file is a complete implementation of riscv_th_vector.h.  */
-#pragma riscv intrinsic "xtheadvector"
-
-#ifdef __cplusplus
-}
-#endif // __cplusplus
-#endif // __riscv_xtheadvector
-#endif // __RISCV_TH_VECTOR_H
+#endif // __SIFIVE_VECTOR_H
