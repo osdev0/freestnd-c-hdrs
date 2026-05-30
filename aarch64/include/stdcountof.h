@@ -1,4 +1,4 @@
-/* Copyright (C) 1997-2026 Free Software Foundation, Inc.
+/* Copyright (C) 2025-2026 Free Software Foundation, Inc.
 
 This file is part of GCC.
 
@@ -21,25 +21,11 @@ a copy of the GCC Runtime Library Exception along with this program;
 see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 <http://www.gnu.org/licenses/>.  */
 
-/*
- * ISO C Standard:  7.9  Alternative spellings  <iso646.h>
- */
+/* ISO C2Y: 7.21 Array count <stdcountof.h>.  */
 
-#ifndef _ISO646_H
-#define _ISO646_H
+#ifndef _STDCOUNTOF_H
+#define _STDCOUNTOF_H
 
-#ifndef __cplusplus
-#define and	&&
-#define and_eq	&=
-#define bitand	&
-#define bitor	|
-#define compl	~
-#define not	!
-#define not_eq	!=
-#define or	||
-#define or_eq	|=
-#define xor	^
-#define xor_eq	^=
-#endif
+#define countof  _Countof
 
-#endif
+#endif	/* stdcountof.h */

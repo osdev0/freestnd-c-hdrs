@@ -1,6 +1,6 @@
 /* AArch64 Non-NEON ACLE intrinsics include file.
 
-   Copyright (C) 2014-2024 Free Software Foundation, Inc.
+   Copyright (C) 2014-2026 Free Software Foundation, Inc.
    Contributed by ARM Ltd.
 
    This file is part of GCC.
@@ -78,36 +78,6 @@ _GCC_ARM_ACLE_DATA_FN (revll, bswap64, uint64_t, uint64_t)
 
 #undef _GCC_ARM_ACLE_DATA_FN
 
-__extension__ extern __inline void
-__attribute__ ((__always_inline__, __gnu_inline__, __artificial__))
-__pld (void const volatile *__addr)
-{
-  return __builtin_aarch64_pld (__addr);
-}
-
-__extension__ extern __inline void
-__attribute__ ((__always_inline__, __gnu_inline__, __artificial__))
-__pli (void const volatile *__addr)
-{
-  return __builtin_aarch64_pli (__addr);
-}
-
-__extension__ extern __inline void
-__attribute__ ((__always_inline__, __gnu_inline__, __artificial__))
-__plix (unsigned int __cache, unsigned int __rettn,
-	void const volatile *__addr)
-{
-  return __builtin_aarch64_plix (__cache, __rettn, __addr);
-}
-
-__extension__ extern __inline void
-__attribute__ ((__always_inline__, __gnu_inline__, __artificial__))
-__pldx (unsigned int __access, unsigned int __cache, unsigned int __rettn,
-	void const volatile *__addr)
-{
-  return __builtin_aarch64_pldx (__access, __cache, __rettn, __addr);
-}
-
 __extension__ extern __inline unsigned long
 __attribute__ ((__always_inline__, __gnu_inline__, __artificial__))
 __revl (unsigned long __value)
@@ -118,8 +88,26 @@ __revl (unsigned long __value)
     return __rev (__value);
 }
 
+__extension__ extern __inline double
+__attribute__ ((__always_inline__, __gnu_inline__, __artificial__))
+__sqrt (double __x)
+{
+  return __builtin_aarch64_sqrtdf (__x);
+}
+
+__extension__ extern __inline float
+__attribute__ ((__always_inline__, __gnu_inline__, __artificial__))
+__sqrtf (float __x)
+{
+  return __builtin_aarch64_sqrtsf (__x);
+}
+
+#define __atomic_store_with_stshh(__addr, __value, __memory_order, __ret) \
+  __builtin_aarch64_stshh ((__addr), (__value), \
+					     (__memory_order), (__ret))
+
 #pragma GCC push_options
-#pragma GCC target ("arch=armv8.3-a")
+#pragma GCC target ("+nothing+jscvt")
 __extension__ extern __inline int32_t
 __attribute__ ((__always_inline__, __gnu_inline__, __artificial__))
 __jcvt (double __a)
@@ -129,8 +117,22 @@ __jcvt (double __a)
 
 #pragma GCC pop_options
 
+__extension__ extern __inline double
+__attribute__ ((__always_inline__, __gnu_inline__, __artificial__))
+__fma (double __x, double __y, double __z)
+{
+  return __builtin_fma (__x, __y, __z);
+}
+
+__extension__ extern __inline float
+__attribute__ ((__always_inline__, __gnu_inline__, __artificial__))
+__fmaf (float __x, float __y, float __z)
+{
+  return __builtin_fmaf (__x, __y, __z);
+}
+
 #pragma GCC push_options
-#pragma GCC target ("arch=armv8.5-a")
+#pragma GCC target ("+nothing+frintts")
 __extension__ extern __inline float
 __attribute__ ((__always_inline__, __gnu_inline__, __artificial__))
 __rint32zf (float __a)
@@ -190,8 +192,33 @@ __rint64x (double __a)
 
 #pragma GCC pop_options
 
-#pragma GCC push_options
 
+#pragma GCC push_options
+#pragma GCC target ("+nothing")
+
+/* Feature constants for CHKFEAT operation.  */
+#define _CHKFEAT_GCS 1
+
+__extension__ extern __inline uint64_t
+__attribute__ ((__always_inline__, __gnu_inline__, __artificial__))
+__chkfeat (uint64_t __feat)
+{
+  return __builtin_aarch64_chkfeat (__feat) ^ __feat;
+}
+
+#define __gcspr() \
+  __builtin_aarch64_gcspr ()
+
+#define __gcspopm() \
+  __builtin_aarch64_gcspopm ()
+
+#define __gcsss(__stack) \
+  __builtin_aarch64_gcsss (__stack)
+
+#pragma GCC pop_options
+
+
+#pragma GCC push_options
 #pragma GCC target ("+nothing+crc")
 
 __extension__ extern __inline uint32_t
