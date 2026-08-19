@@ -112,8 +112,7 @@ cd build-gcc
     --prefix="$PREFIX" \
     --disable-nls \
     --enable-languages=c,c++ \
-    --without-headers \
-    $ADDITIONAL_GCC_CONFIGURE_FLAGS
+    --without-headers
 $MAKE all-gcc
 $MAKE all-target-libgcc
 $MAKE install-gcc
